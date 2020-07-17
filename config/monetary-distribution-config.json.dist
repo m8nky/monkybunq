@@ -3,31 +3,40 @@
   "worksheet": "develop",
   "distribution": {
     "source": {
-      "name": "Main",
+      "name": "Inbox",
       "bank": "Bunq",
       "iban": "NL11BUNQ2222222222",
       "recipient": "My name",
       "value": {
-        "worksheetCell": "A1"
+        "worksheetCell": "A2"
       }
     },
     "targets": [
       {
-        "name": "LH",
+        "name": "Lifestyle",
         "bank": "Bunq",
         "iban": "NL11BUNQ2222222222",
         "recipient": "Recipient name",
         "value": {
-          "worksheetCell": "B1"
+          "worksheetCell": "B2"
         }
       },
       {
-        "name": "INV",
+        "name": "Fun",
         "bank": "Bunq",
         "iban": "NL11BUNQ2222222222",
         "recipient": "Recipient name",
         "value": {
-          "worksheetCell": "C1"
+          "worksheetCell": "C2"
+        }
+      },
+      {
+        "name": "Savings",
+        "bank": "IngDiba",
+        "iban": "DE11222222223333333333",
+        "recipient": "Recipient name",
+        "value": {
+          "worksheetCell": "D2"
         }
       }
     ]
