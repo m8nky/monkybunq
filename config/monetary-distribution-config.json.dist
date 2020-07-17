@@ -1,0 +1,35 @@
+{
+  "sheetId": "111111111-11111111111111111",
+  "worksheet": "develop",
+  "distribution": {
+    "source": {
+      "name": "Main",
+      "bank": "Bunq",
+      "iban": "NL11BUNQ2222222222",
+      "recipient": "My name",
+      "value": {
+        "worksheetCell": "A1"
+      }
+    },
+    "targets": [
+      {
+        "name": "LH",
+        "bank": "Bunq",
+        "iban": "NL11BUNQ2222222222",
+        "recipient": "Recipient name",
+        "value": {
+          "worksheetCell": "B1"
+        }
+      },
+      {
+        "name": "INV",
+        "bank": "Bunq",
+        "iban": "NL11BUNQ2222222222",
+        "recipient": "Recipient name",
+        "value": {
+          "worksheetCell": "C1"
+        }
+      }
+    ]
+  }
+}

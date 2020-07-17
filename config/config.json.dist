@@ -1,0 +1,17 @@
+{
+  "Gsheet": {
+    "auth": {
+      "configFile": "/config/gdocs-personal-fe1c0a5606ff.json"
+    }
+  },
+  "Bunq": {
+    "apiKey": "",
+    "auth": {
+      "configFile": "/config/bunq-production.conf"
+    },
+    "description": "monkybunq"
+  },
+  "MonetaryDistributionData": {
+    "configProvider": "/config/monetary-distribution-config.json"
+  }
+}

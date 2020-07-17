@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+import argparse
+from msapp.config import ConfigProvider
+import msapp.domain
+from msapp.datamapper import MonetaryDistribution
+from msapp.domain.service import DistributorService
+
+
+def main():
+    # Prepare environment
+    commands = ['info', 'distribute']
+    parser = argparse.ArgumentParser(description="monkybunq")
+    parser.add_argument('cmd',  help=' | '.join(commands), choices=commands)
+    parser.add_argument('--dry', help='run distributor without issuing the transactions', action="store_true")
+    args = parser.parse_args()
+    if args.dry is True:
+        ConfigProvider.injectExtraConfig('dry', args.dry)
+    # Initialize app
+    msapp.domain.init()
+    if args.cmd == 'info':
+        # Print bunq account info
+        msapp.domain.bunq.info()
+    if args.cmd == 'distribute':
+        # Initiate transactions
+        distributorService = DistributorService(MonetaryDistribution(ConfigProvider()))
+        distributorService.distribute()
+
+
+if __name__ == '__main__':
+    main()
