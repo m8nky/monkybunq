@@ -1,6 +1,8 @@
 {
-  "sheetId": "111111111-11111111111111111",
-  "worksheet": "develop",
+  "gsheet": {
+    "sheetId": "111111111-11111111111111111",
+    "worksheet": "develop"
+  },
   "distribution": {
     "source": {
       "name": "Inbox",

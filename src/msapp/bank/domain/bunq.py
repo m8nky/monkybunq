@@ -1,25 +1,27 @@
+from decimal import Decimal
+import logging
 from bunq import ApiEnvironmentType
 from bunq.sdk.context.api_context import ApiContext
 from bunq.sdk.exception.bunq_exception import BunqException
 from bunq.sdk.model.generated import endpoint
 from bunq.sdk.model.generated.endpoint import MonetaryAccountBank, MonetaryAccountSavings
 from bunq.sdk.model.generated.object_ import Amount, DraftPaymentEntry, Pointer
-from lib.share_lib import ShareLib
-from lib.bunq_lib import BunqLib
-from decimal import Decimal
-from msapp.config import ConfigProvider
+from msapp.bank.gateway.share_lib import ShareLib
+from msapp.bank.gateway.bunq_lib import BunqLib
 from .bank import Bank
 from .transactionItem import TransactionItem
 
 
 class Bunq(Bank):
-    def __init__(self, configProvider: ConfigProvider):
-        super().__init__()
-        config = configProvider.getConfig(self.__class__.__name__)
-        self._apiKey = config['apiKey']
-        self._authConfigFile = config['auth']['configFile']
-        self._contextDescription = config['description']
-        self._isDryRun = lambda: True if configProvider.getConfig('dry') is True else False
+    _l = logging.getLogger(__name__)
+
+    def __init__(self, apiKey: str, authConfigFile: str, apiContextDescription: str, sandboxMode: bool):
+        self._apiKey = apiKey
+        self._authConfigFile = authConfigFile
+        self._contextDescription = apiContextDescription
+        self._isDryRun = sandboxMode
+        if self._isDryRun:
+            Bunq._l.info("Running in 'sandbox' mode. Transactions will not be executed.")
         # Re-open or create bunq context/session
         try:
             BunqLib._BUNQ_CONF_PRODUCTION = self._authConfigFile

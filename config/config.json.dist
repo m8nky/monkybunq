@@ -1,17 +1,23 @@
 {
-  "Gsheet": {
+  "dry": true,
+  "gsheet": {
     "auth": {
-      "configFile": "/config/gdocs-personal-fe1c0a5606ff.json"
+      "configFile": "/config/gdocs-personal-aaaaaaaaaaaa.json"
     }
   },
-  "Bunq": {
-    "apiKey": "",
-    "auth": {
-      "configFile": "/config/bunq-production.conf"
-    },
-    "description": "monkybunq"
+  "cash": {
+    "configProvider": "/config/gnucash-config.json"
   },
-  "MonetaryDistributionData": {
+  "bank": {
+    "bunq": {
+      "apiKey": "",
+      "auth": {
+        "configFile": "/config/bunq-production.conf"
+      },
+      "apiContextDescription": "monkybunq"
+    }
+  },
+  "distributor": {
     "configProvider": "/config/monetary-distribution-config.json"
   }
 }

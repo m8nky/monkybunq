@@ -1,0 +1,18 @@
+{
+  "gnucash": {
+    "xmlFilename": "/config/cash.gnca"
+  },
+  "gsheet": {
+    "sheetId": "111111111-11111111111111111",
+    "worksheet": "develop"
+  },
+  "datamap": {
+    "latestDateKey": "F4",
+    "accountsMapping": {
+      "Cash": "F3",
+      "Lifestyle": "A3",
+      "Fun": "B3",
+      "Savings": "C3"
+    }
+  }
+}

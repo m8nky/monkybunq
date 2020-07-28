@@ -2,7 +2,7 @@
 FROM python:3.8-slim
 
 # Install production dependencies.
-RUN pip install bunq_sdk gspread oauth2client
+RUN pip install bunq_sdk gspread oauth2client lxml dependency-injector
 
 COPY src /app
 COPY config /config

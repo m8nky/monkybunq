@@ -4,26 +4,23 @@ import os.path
 from functools import lru_cache
 
 
-logging.basicConfig(level=logging.DEBUG)
 class ConfigProvider:
     _MAIN_CONFIG_FILE = '/config/config.json'
-    _EXTRA_CONFIG = {}
+    _l = logging.getLogger(__name__)
 
     def __init__(self):
-        self._l = logging.getLogger(__name__)
         self._config = self._loadConfig(ConfigProvider._MAIN_CONFIG_FILE)
 
     @staticmethod
     @lru_cache(maxsize=None)
     def _loadConfig(configFile: str) -> [dict, list]:
-        _l = logging.getLogger(__name__)
         data = {}
         try:
             fp = open(configFile, 'r', encoding='utf-8')
             data = json.load(fp)
             fp.close()
         except Exception:
-            _l.error(f"Failed to load config data from '{configFile}'")
+            ConfigProvider._l.error(f"Failed to load config data from '{configFile}'")
         # Replace nested config
         def _injectNestedConfig(obj: dict):
             if 'configProvider' in obj:
@@ -39,16 +36,12 @@ class ConfigProvider:
                     _injectNestedConfig(v)
         if type(data) is dict:
             _injectNestedConfig(data)
-        _l.debug(f"Config loaded: {data}")
+        ConfigProvider._l.debug(f"Config loaded: {data}")
         return data
 
-    def getConfig(self, context: str):
-        if context in ConfigProvider._EXTRA_CONFIG:
-            return ConfigProvider._EXTRA_CONFIG[context]
+    def getConfig(self, context: str = None):
+        if context is None:
+            return self._config
         if context in self._config:
             return self._config[context]
         return None
-
-    @staticmethod
-    def injectExtraConfig(key: str, value):
-        ConfigProvider._EXTRA_CONFIG[key] = value
