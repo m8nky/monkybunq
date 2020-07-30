@@ -1,8 +1,11 @@
 from typing import Iterable
+import logging
 from .transactionItem import TransactionItem
 
 
 class Bank:
+    _l = logging.getLogger(__name__)
+
     def info(self):
         raise NotImplementedError("abstract")
 
@@ -11,6 +14,6 @@ class Bank:
 
     @staticmethod
     def printTask(source: TransactionItem, targets: Iterable[TransactionItem]):
-        print(f"Distribute '{str(source.amount)}' from '{source.iban}'...")
-        for target in targets:
-            print(f" -> '{str(target.amount)}' to '{target.iban}' ({target.subject})")
+        loglines = [f"Distribute '{str(source.amount)}' from '{source.iban}'..."]
+        loglines += [f" -> '{str(t.amount)}' to '{t.iban}' ({t.subject})" for t in targets]
+        Bank._l.info('\n'.join(loglines))
