@@ -13,4 +13,4 @@ class Bank:
     def printTask(source: TransactionItem, targets: Iterable[TransactionItem]):
         print(f"Distribute '{str(source.amount)}' from '{source.iban}'...")
         for target in targets:
-            print(f" -> '{str(target.amount)}' to '{target.iban}'")
+            print(f" -> '{str(target.amount)}' to '{target.iban}' ({target.subject})")

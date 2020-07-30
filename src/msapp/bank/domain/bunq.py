@@ -63,7 +63,7 @@ class Bunq(Bank):
                 # External Bunq user or bank account.
                 targetAccount = Bunq.getExternalIbanPointer(target.iban, target.recipient)
             assert isinstance(targetAccount, Pointer)
-            drafts.append(Bunq.draftPaymentEntryByValue(sourceAccount, targetAccount, target.amount, target.name))
+            drafts.append(Bunq.draftPaymentEntryByValue(sourceAccount, targetAccount, target.amount, target.subject))
         if len(drafts) <= 0:
             return
         res = Bunq.draftPayment(sourceAccount, drafts) if not self._isDryRun else 0

@@ -13,13 +13,16 @@ class TransactionItem:
     def create(data: dict, bankRepository: BankRepository):
         bank = bankRepository.probe(data['bank'])
         bank = bank if not None else data['bank']
-        return TransactionItem(data['name'], bank, data['iban'], data['recipient'], data['value'])
+        if 'subject' not in data or len(data['subject']) == 0:
+            data['subject'] = data['name'];
+        return TransactionItem(data['name'], bank, data['iban'], data['recipient'], data['subject'], data['value'])
 
-    def __init__(self, name: str, bank: [str, Bank], iban: str, recipient: str, value: Decimal):
+    def __init__(self, name: str, bank: [str, Bank], iban: str, recipient: str, subject: str, value: Decimal):
         self._name = name
         self._bank = bank
         self._iban = iban
         self._recipient = recipient
+        self._subject = subject
         self._value = value
 
     @property
@@ -37,6 +40,10 @@ class TransactionItem:
     @property
     def recipient(self) -> str:
         return self._recipient
+
+    @property
+    def subject(self) -> str:
+        return self._subject
 
     @property
     def amount(self) -> Decimal:

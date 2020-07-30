@@ -28,6 +28,7 @@
         "bank": "Bunq",
         "iban": "NL11BUNQ2222222222",
         "recipient": "Recipient name",
+        "subject": "Urlaub Handy Markenschuhe"
         "value": {
           "worksheetCell": "C2"
         }
